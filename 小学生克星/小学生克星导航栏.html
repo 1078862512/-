@@ -1,0 +1,521 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<style>
+	*{margin:0;padding:0}
+	#head{
+		width: 600px;
+		margin: 0 auto;
+		text-align: center;
+		font-family: "字魂78号-空灵体";
+		font-size: 70px;
+	}
+	#nav{
+		height:100px;
+		width:600px;
+		background-color: aqua;
+		position: relative;
+		left: 27px;
+		margin: 0 auto;
+	}
+	#nav div{
+		height: 98px;
+		width: 145px;
+		display: inline-block;
+		margin:1px 2px;
+		background-color: aquamarine;
+		position: absolute;
+		top:-10px;
+		transition: all 0.1s linear;
+		box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+	}
+	#bar1{
+		left:-8px;
+	}
+	#bar2{
+		left:142px;
+	}
+	#bar3{
+		left:293px
+	}
+	#bar4{
+		left:443px;
+	}
+	#nav div img{
+		height:40px;
+		position: absolute;
+		top:29px;
+		left: 15px;
+	}
+	#nav div a{
+		position: absolute;
+		top:40px;
+		left:60px;
+	}
+	#nav div:hover{
+		transform: translateX(5px) translateY(5px);
+		background-color: darkcyan;
+		
+	}
+	#container{
+		width:600px;
+		height:500px;
+		background-color: aqua;
+		position: relative;
+		left:27px;
+		margin: 0 auto;
+	}
+	#footer{
+		width:600px;
+		background-color: coral;
+		text-align: center;
+		font-family:"字魂78号-空灵体";
+		font-size: 30px;
+		position: relative;
+		left: 27px;
+		top:-4px;
+		margin: 0 auto;
+	}
+	#output{
+		width:500px;
+		height: 300px;
+		background-color: aliceblue;
+		margin: 0 auto;
+		overflow: scroll;
+		position: absolute;
+		right:50px;
+		top: 120px;
+	}
+	#refresh
+	{
+		float:right;
+	}
+	#max{
+		position: absolute;
+		left: 20px;
+		top:20px;
+	}
+	#count{
+		position: absolute;
+		right: 20px;
+		top:20px;
+	}
+	#start{
+		position: relative;
+		top:50px;
+		left:200px;
+	}
+	#refresh{
+		position: relative;
+		top:50px;
+		right:200px;
+	}
+	#save{
+		height:50px;
+		width: 200px;
+		position: absolute;
+		right:200px;
+		top:430px;
+		text-align: center;
+		margin: 0 auto;
+		line-height:50px;
+		background-color: aliceblue;
+		font-family: "字魂78号-空灵体";
+		font-size: 35px;
+		border-radius: 5px;
+		transition: all 0.1s linear;
+	}
+	#save:hover{
+		transform: scale(1.2);
+	}
+	#save:active{
+		background-color: aquamarine;
+	}
+	#start{
+		height:50px;
+		width: 200px;
+		position: absolute;
+		text-align: center;
+		left: 50px;
+		margin: 0 auto;
+		line-height:50px;
+		background-color: aliceblue;
+		font-family: "字魂78号-空灵体";
+		font-size: 35px;
+		border-radius: 5px;
+		transition: all 0.1s linear;
+	}
+	#start:hover{
+		transform: scale(1.2);
+	}
+	#sta:active{
+		background-color: aquamarine;
+	}
+	#refresh{
+		height:50px;
+		width: 200px;
+		position: absolute;
+		text-align: center;
+		right: 50px;
+		margin: 0 auto;
+		line-height:50px;
+		background-color: aliceblue;
+		font-family: "字魂78号-空灵体";
+		font-size: 35px;
+		border-radius: 5px;
+		transition: all 0.1s linear;
+	}
+	#refresh:hover{
+		transform: scale(1.2);
+	}
+	#refresh:active{
+		background-color: aquamarine;
+	}
+</style>
+	<script type="text/javascript">
+			function refresh()
+		{
+			window.location.reload();
+		}
+			function GetRandomNum(Min,Max)//核心，用于生成指定范围内随机整数
+    		{   
+        		var Range = Max - Min;   
+        		var Rand = Math.random();   
+        		return(Min + Math.round(Rand * Range));   
+    		}
+			
+			
+			function Two(Min,Max)//二元启动函数
+			{
+				var num1=GetRandomNum(Min,Max);
+				var num2=GetRandomNum(Min,Max);
+				var sona=TwoOperations(num1,num2);
+				return sona;
+			}
+			function Three(Min,Max)//三元启动函数
+			{
+				var num1=GetRandomNum(Min,Max);
+				var num2=GetRandomNum(Min,Max);
+				var num3=GetRandomNum(Min,Max);
+				var mata=ThreeOperations(num1,num2,num3);
+				return mata;
+			}
+			function Four(Min,Max)//四元启动函数
+			{
+				var num1=GetRandomNum(Min,Max);
+				var num2=GetRandomNum(Min,Max);
+				var num3=GetRandomNum(Min,Max);
+				var num4=GetRandomNum(Min,Max);
+				var icey=FourOperations(num1,num2,num3,num4);
+				return icey;
+			}
+			
+			
+			function TwoOperations(num1,num2)//用于生成二元运算题
+			{
+				var sign=["+","-","*","/"];//并没有实际作用，用来提醒我顺序  
+				
+				var choose=GetRandomNum(0,3);
+				switch(choose)
+						{
+					case 0:
+						{
+							var sum=num1+num2;
+							var question=(num1+"+"+num2+"="+sum);
+							return question;
+							break;
+						}
+					case 1:
+						{
+							var t=0;
+							if(num1<num2)
+								{
+									t=num1;
+									num1=num2;
+									num2=t;
+								}
+							var sum=num1-num2;
+							var question=(num1+"-"+num2+"="+sum);
+							return question;
+							break;
+						}
+					case 2:
+						{
+							var sum=num1*num2;
+							var question=(num1+"*"+num2+"="+sum);
+							return question;
+							break;
+						}
+					case 3:
+						{	
+							var t=0;
+							if(num1>num2)
+								{
+									t=num1;
+									num1=num2;
+									num2=t;
+								}
+							var question=(num1+"/"+num2+"="+num1+"/"+num2);
+							return question;
+							break;
+						}
+				}
+			}
+			function TwoOperations_s(num1,num2)//三元/四元运算附属函数，用于生成二元计算式
+			{ 
+				var choose=GetRandomNum(0,3);
+				switch(choose)
+						{
+					case 0:
+						{
+							var question=(num1+"+"+num2);
+							return question;
+							break;
+						}
+					case 1:
+						{
+							var t=0;
+							if(num1<num2)
+								{
+									t=num1;
+									num1=num2;
+									num2=t;
+								}
+							var question=(num1+"-"+num2);
+							return question;
+							break;
+						}
+					case 2:
+						{
+							var question=(num1+"*"+num2);
+							return question;
+							break;
+						}
+					case 3:
+						{	
+							var t=0;
+							if(num1>num2)
+								{
+									t=num1;
+									num1=num2;
+									num2=t;
+								}
+							var question=(num1+"/"+num2);
+							return question;
+							break;
+						}
+				}
+			}
+			function FourOperations(num1,num2,num3,num4)//用于生成四元计算题
+			{
+				var choose=GetRandomNum(0,3);
+				switch(choose)
+						{
+					case 0:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var B=TwoOperations_s(num3,num4);
+							var sum=eval(A+"+"+B);
+							var question=(A+"+"+B+"="+sum);
+							return question;
+							break;
+						}
+					case 1:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var B=TwoOperations_s(num3,num4);
+							var sumA=eval(A);
+							var sumB=eval(B);
+							if(sumA<sumB)
+							{
+								var t=A;
+								A=B;
+								B=t;
+							}
+							var sum=eval(A+"-"+B);
+							var question=(A+"-"+B+"="+sum);
+							return question;
+							break;
+						}
+					case 2:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var B=TwoOperations_s(num3,num4);
+							var sum=eval("("+A+")"+"*"+"("+B+")");
+							var question=("("+A+")"+"*"+"("+B+")"+"="+sum);
+							return question;
+							break;
+						}
+					case 3:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var B=TwoOperations_s(num3,num4);
+							var t=0;
+							if(A>B)
+							{
+								t=A;
+								A=B;
+								B=t;
+							}
+							var a=eval(A);var b=eval(B);
+							var question=("("+A+")"+"/"+"("+B+")"+"="+a+"/"+b);
+							return question;
+							break;
+						}
+				}
+			}
+			function ThreeOperations(num1,num2,num3)//用于生成三元计算题
+			{
+				var choose=GetRandomNum(0,3);
+				switch(choose)
+						{
+					case 0:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var sum=eval(A+"+"+num3);
+							var question=(A+"+"+num3+"="+sum);
+							return question;
+							break;
+						}
+					case 1:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var sum=eval(A+"-"+num3);
+							if(sum<0)
+								{
+									var t=A;
+									A=num3;
+									num3=A;
+									sum=eval(A+"-"+num3);
+								}
+							var question=(A+"-"+num3+"="+sum);
+							return question;
+							break;
+						}
+					case 2:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var sum=eval("("+A+")"+"*"+num3);
+							var question=("("+A+")"+"*"+num3+"="+sum);
+							return question;
+							break;
+						}
+					case 3:
+						{
+							var A=TwoOperations_s(num1,num2);
+							var sum=eval("("+A+")"+"/"+num3);
+							if(sum>1)
+								{
+									var t=A;
+									A=num3;
+									num3=t;
+									sum=eval(num3);
+								}
+							else
+								{
+									sum=num3;
+								}
+							var a=eval(A);
+							var question=("("+A+")"+"/"+num3+"="+a+"/"+sum);
+							return question;
+							break;
+						}
+				}
+			}
+			
+			function Start()
+			{
+				var max=document.getElementById("max").value;
+				var n=document.getElementById("count").value;
+				var min=1;
+				for(var i=0;i<n;i++)
+					{
+						var choose=GetRandomNum(2,4);
+						switch(choose)
+								{
+							case 2:
+								{
+									var T=Two(min,max);
+									var ouput=document.getElementById("output");
+									output.innerHTML+=("第"+(i+1)+"题："+T+"</br>");
+									break;
+									
+								}
+							case 3:
+								{
+									var T=Three(min,max);
+									var ouput=document.getElementById("output");
+									output.innerHTML+=("第"+(i+1)+"题："+T+"</br>");
+									break;
+								}
+							case 4:
+								{
+									var T=Four(min,max);
+									var ouput=document.getElementById("output");
+									output.innerHTML+=("第"+(i+1)+"题："+T+"</br>");
+									break;
+								}
+						}
+					}
+			}
+			function fakeClick(obj) { 
+				var ev = document.createEvent("MouseEvents");
+				ev.initMouseEvent("click", true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+				obj.dispatchEvent(ev);
+			}
+			function exportRaw(name, data) {
+				var urlObject = window.URL || window.webkitURL ||window;
+				var export_blob = new Blob([data]);
+				var save_link = document.createElementNS("http://www.w3.org/1999/xhtml", "a")
+				save_link.href = urlObject.createObjectURL(export_blob);
+				save_link.download = name;
+				fakeClick(save_link);
+			}
+			function saveFile(){
+				var inValue  = document.querySelector('#output').innerHTML;
+				exportRaw('test.txt', inValue);
+			}
+</script>
+</head>
+
+<body>
+	<div id="head">
+		小学生克星
+	</div>
+	<div id="nav">
+		<div id="bar1">
+			<img src="images/play.png" alt="标题">
+			<a href="#">首页</a>
+		</div>
+		<div id="bar2">
+			<img src="images/pause.png" alt="标题">	
+			<a href="#">题目生成</a>
+		</div>
+		<div id="bar3">
+			<img src="images/plus.png" alt="标题">
+			<a href="">题目审核</a>
+		</div>
+		<div id="bar4">
+			<img src="images/record.png" alt="标题">
+			<a href="#">创作过程</a>
+		</div>
+	</div>
+	<div id="container">
+		<div id="title"></div>
+		<div id="input">
+			<input id="max" type="text" placeholder="范围最大值">
+			<input id="count" type="text" placeholder="题目总个数">
+			<div id="start" onClick="Start()">开始生成</div>
+			<div id="refresh" onClick="refresh()">重置参数</div>
+		</div>
+		<div id="output"></div>
+		<div id="save" onClick="saveFile()">Save As A
+		File</div>
+	</div>
+	<div id="footer">
+		&copy;<span>通鸽鸽&弟弟&nbsp;2020<br/>&nbsp;All&nbsp;Rights&nbsp;Received.</span>
+	</div>
+</body>
+</html>
